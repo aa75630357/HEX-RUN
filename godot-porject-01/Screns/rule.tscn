@@ -1,0 +1,125 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbt6i34giq4d2"]
+
+[ext_resource type="Script" uid="uid://cyq2nai12strj" path="res://Screns/rule.gd" id="1_mk621"]
+[ext_resource type="Texture2D" uid="uid://braqlej4hlvw6" path="res://images/螢幕擷取畫面 2025-11-28 102354.png" id="1_rxu1g"]
+[ext_resource type="Script" uid="uid://cyr3x5p33xdoy" path="res://Screns/player.gd" id="3_6868x"]
+[ext_resource type="Texture2D" uid="uid://cw3ysrlbdks76" path="res://images/方塊.png" id="4_shnag"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m128e"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_orv1k"]
+size = Vector2(5.333336, 5.333338)
+
+[node name="rule" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 2.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mk621")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(500, 400)
+layout_mode = 0
+offset_left = 648.0
+offset_top = 3.0
+offset_right = 1148.0
+offset_bottom = 403.0
+texture = ExtResource("1_rxu1g")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+text = "Back
+"
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 0
+offset_left = 670.0
+offset_top = 426.0
+offset_right = 919.0
+offset_bottom = 452.0
+scale = Vector2(2, 2)
+text = "Please carefully avoid obstacles."
+
+[node name="Label2" type="Label" parent="."]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 0
+offset_left = 91.0
+offset_top = 428.0
+offset_right = 238.0
+offset_bottom = 454.0
+scale = Vector2(2, 2)
+text = "Use WASD to move"
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(238, 230)
+scale = Vector2(1.5, 1.5)
+script = ExtResource("3_6868x")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(-0.015991688, 4.7683716e-07)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_shnag")
+hframes = 8
+vframes = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-0.016052246, -3.0517578e-05)
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_m128e")
+
+[node name="hitbox" type="Area2D" parent="Player"]
+scale = Vector2(1.5, 1.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/hitbox"]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_orv1k")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(237, 230)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 150)
+scale = Vector2(75, 1)
+shape = SubResource("RectangleShape2D_orv1k")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -150)
+scale = Vector2(75, 1)
+shape = SubResource("RectangleShape2D_orv1k")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(150, 0)
+rotation = 1.5707964
+scale = Vector2(75, 1)
+shape = SubResource("RectangleShape2D_orv1k")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-150, 0)
+rotation = 1.5707964
+scale = Vector2(75, 1)
+shape = SubResource("RectangleShape2D_orv1k")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="body_entered" from="Player/hitbox" to="Player" method="_on_hitbox_body_entered"]

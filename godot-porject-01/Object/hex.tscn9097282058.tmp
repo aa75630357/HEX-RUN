@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1qi6xltb82jy"]
+
+[ext_resource type="Script" uid="uid://dn4kicw3ue0ll" path="res://Screns/hex.gd" id="1_0csl4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_orv1k"]
+size = Vector2(10.5802, 104.1051)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0csl4"]
+
+[node name="hex" type="StaticBody2D" groups=["hex"]]
+scale = Vector2(6, 6)
+script = ExtResource("1_0csl4")
+metadata/_edit_group_ = true
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(50, 86.6, 100, 0, 50, -86.6, -50, -86.6, -100, 0, -50, 86.6, -50, 86.6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -87)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_orv1k")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(76, 41.999996)
+rotation = 0.5235988
+shape = SubResource("RectangleShape2D_orv1k")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="."]
+position = Vector2(75, -44)
+rotation = 2.6179938
+shape = SubResource("RectangleShape2D_orv1k")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(-76, 41)
+rotation = -0.5235988
+shape = SubResource("RectangleShape2D_orv1k")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+position = Vector2(-74.99999, -43.999996)
+rotation = -2.6179938
+shape = SubResource("RectangleShape2D_orv1k")
+
+[node name="hitbox" type="Area2D" parent="."]
+position = Vector2(0, 87.166664)
+scale = Vector2(5.5, 0.5)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_0csl4")
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

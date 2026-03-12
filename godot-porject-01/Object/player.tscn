@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://do81g0rhbrr25"]
+
+[ext_resource type="Script" uid="uid://cyr3x5p33xdoy" path="res://Screns/player.gd" id="1_kwdud"]
+[ext_resource type="Texture2D" uid="uid://cw3ysrlbdks76" path="res://images/方塊.png" id="2_a1t8t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m128e"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_orv1k"]
+size = Vector2(5.333336, 5.333332)
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_kwdud")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.015991688, 4.7683716e-07)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_a1t8t")
+hframes = 8
+vframes = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.016052246, -3.0517578e-05)
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_m128e")
+
+[node name="hitbox" type="Area2D" parent="."]
+scale = Vector2(1.5, 1.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_orv1k")
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx1acvilhrmd8"]
+
+[ext_resource type="Script" uid="uid://5whvrbyrbtmu" path="res://Screns/end_game.gd" id="1_4nlv5"]
+
+[node name="EndGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4nlv5")
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(1.7602391, 1.7602391, 1.7602391, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.497
+anchor_top = -0.49100003
+anchor_right = 0.503
+anchor_bottom = 0.5
+offset_left = -0.45599365
+offset_top = 0.16802979
+offset_right = -0.4560547
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+offset_left = -572.0
+offset_top = -317.0
+offset_right = 581.0
+offset_bottom = 325.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="replay" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Play again"
+
+[node name="BackMenu" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Back to Menu
+"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/replay" to="." method="_on_replay_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/BackMenu" to="." method="_on_back_menu_pressed"]
